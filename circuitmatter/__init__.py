@@ -82,6 +82,7 @@ class CircuitMatter:
         }
         from . import pase
 
+        print("Manual pairing code: ", passcode)
         pase.show_qr_code(self.vendor_id, self.product_id, discriminator, passcode)
         instance_name = self.random.urandom(8).hex().upper()
         self.mdns_server.advertise_service(
