@@ -43,7 +43,7 @@ python examples/replay.py test_data/recorded_packets.jsonl
 To run CircuitMatter against a live Matter commissioner run:
 
 ```shell
-python -m circuitmatter
+python -m examples.circuitmatter_simpletest
 ```
 
 This will start up MDNS via avahi for discovery by the commissioner and then reply to received UDP packets. CircuitMatter currently doesn't fully commission so it can't act as any specific type of device yet. When it can, there will be examples.
