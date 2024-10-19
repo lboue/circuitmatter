@@ -71,7 +71,7 @@ class BasicInformationCluster(Cluster):
     )
     software_version = NumberAttribute(0x09, signed=False, bits=32, default=0)
     software_version_string = UTF8StringAttribute(
-        0x0A, min_length=1, max_length=64, default="Unknown"
+        0x0A, min_length=1, max_length=64, default=__version__
     )
     manufacturing_date = UTF8StringAttribute(
         0x0B, min_length=8, max_length=16, default="Unknown"
