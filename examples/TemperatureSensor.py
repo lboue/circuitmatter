@@ -24,6 +24,11 @@ class LED(on_off.OnOffLight):
         self._led.value = False
 
 
+class TempSensor(temperature_sensor.TemperatureSensor):
+    def __init__(self, name):
+        super().__init__(name)
+
+
 matter = cm.CircuitMatter(state_filename="test_data/device_state.json")
 #led = LED("led1", digitalio.DigitalInOut(board.D13))
 tempSensor = TempSensor("TempSensor")
