@@ -27,6 +27,7 @@ class LED(on_off.OnOffLight):
 class TempSensor(temperature_sensor.TemperatureSensor):
     def __init__(self, name):
         super().__init__(name)
+        self._temp = bme280.temperature
 
 
 matter = cm.CircuitMatter(state_filename="test_data/device_state.json")
