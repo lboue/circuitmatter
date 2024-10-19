@@ -10,7 +10,7 @@ from adafruit_bme280 import basic as adafruit_bme280
 
 # Create sensor object, using the board's default I2C bus.
 i2c = board.I2C()  # uses board.SCL and board.SDA
-bme280 = adafruit_bme280.Adafruit_BME280_I2C(i2c)
+bme280 = adafruit_bme280.Adafruit_BME280_I2C(i2c, 0x76)
 
 class LED(on_off.OnOffLight):
     def __init__(self, name, led):
@@ -23,17 +23,24 @@ class LED(on_off.OnOffLight):
     def off(self, session):
         self._led.value = False
 
+    def get_temp(self, session):
+        return ((bme280.temperature)*100)
 
-class TempSensor(temperature_sensor.TemperatureSensor):
+
+class TempSensorTest(temperature_sensor.TemperatureSensor):
     def __init__(self, name):
         super().__init__(name)
-        self._temp = bme280.temperature
+        self._temp = (bme280.temperature)*100
 
 
 matter = cm.CircuitMatter(state_filename="test_data/device_state.json")
 #led = LED("led1", digitalio.DigitalInOut(board.D13))
-tempSensor = TempSensor("TempSensor")
+print(bme280.temperature)
+tempSensor = TempSensorTest("TempSensor")
+print(tempSensor._temp)
+
 #matter.add_device(led)
 matter.add_device(tempSensor)
+
 while True:
     matter.process_packets()
